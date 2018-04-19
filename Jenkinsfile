@@ -1,5 +1,5 @@
 pipeline {
-   agent any
+   agent { docker { image 'maven:3.5-alpine' } }
 
    options {
       buildDiscarder(logRotator(numToKeepStr:'10'))
@@ -11,7 +11,7 @@ pipeline {
             sh 'echo Joe'
          }
       }
-stage('Development Tests') {
+      stage('Development Tests') {
          when {
             beforeAgent true
             branch 'development'
